@@ -1,0 +1,52 @@
+@keyframes animChangeColor {
+    0% {color:#8bc9e3}
+    50% {color:#bf00bf}
+    100% {color:#8bc9e3}
+}
+
+@keyframes invertImg {
+    0% {opacity:1}
+    50% {opacity:0}
+    0% {opacity:1}
+}
+
+@keyframes invertImg2 {
+    0% {opacity:0}
+    50% {opacity:1}
+    100% {opacity:0}
+}
+
+h1 {
+    color:#8bc9e3;
+    animation-name: animChangeColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.imgs {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 200px;
+}
+
+.imgs > img {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.img1 {
+    z-index: 0;
+    animation-name: invertImg;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.img2 {
+    z-index: 1;
+    animation-name: invertImg2;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+a, p, label {
+    color: white;
+}
