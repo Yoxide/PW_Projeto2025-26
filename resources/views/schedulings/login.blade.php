@@ -21,13 +21,9 @@
         </div>
         <button class="btn btn-primary" disabled>Entrar</button>
     </form>
-
     <p class="text-muted mt-3">
-
 </p>
-
     <a href="{{ route('home') }}" class="btn btn-link mt-3">← Voltar à página inicial</a>
 </div>
-
 </body>
 </html>

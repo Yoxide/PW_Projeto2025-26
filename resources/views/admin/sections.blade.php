@@ -8,7 +8,7 @@
 
     <div class="card mt-3">
         <div class="card-body">
-            <p>Gestão de Sections (apenas visual)</p>
+            <p>Gestão de Sections</p>
             <ul>
                 <li>Section 1</li>
                 <li>Section 2</li>

@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container mt-4">
-
         <h2>Lista de Agendamentos</h2>
 
         @if(session('success'))
@@ -10,7 +9,6 @@
         @endif
 
         <a href="{{ route('schedulings.create') }}" class="btn btn-success mb-3">Novo Agendamento</a>
-
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -22,7 +20,6 @@
                 <th>Notas</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($schedulings as $s)
                 <tr>
@@ -36,6 +33,5 @@
             @endforeach
             </tbody>
         </table>
-
     </div>
 @endsection

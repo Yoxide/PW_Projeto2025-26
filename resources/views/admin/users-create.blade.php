@@ -38,7 +38,6 @@
                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
-
         </div>
     </div>
 @endsection

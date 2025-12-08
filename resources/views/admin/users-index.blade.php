@@ -6,12 +6,8 @@
 @section('content')
     <div class="d-flex justify-content-between mb-3">
         <h3>Utilizadores</h3>
-
-        <a href="{{ route('admin.users.create') }}" class="btn btn-success">
-            + Novo Utilizador
-        </a>
+        <a href="{{ route('admin.users.create') }}" class="btn btn-success">Novo Utilizador</a>
     </div>
-
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered">
@@ -24,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- Conteúdo só visual -->
+                <!-- Conteúdo só visual exemplo -->
                 <tr>
                     <td>1</td>
                     <td>João Silva</td>

@@ -9,12 +9,10 @@
 </head>
 <body class="bg-light">
 
-<!-- TOPO COM LOGIN -->
+<!--  topo -->
 <nav class="navbar navbar-light bg-light">
     <div class="container">
-        <span class="navbar-brand fw-bold">
-            Gestão de Limpeza AL
-        </span>
+        <span class="navbar-brand fw-bold">Gestão de Limpeza Alojamentos</span>
 
         <a href="{{ route('schedulings.login') }}" class="btn btn-outline-dark">
             Login
@@ -22,27 +20,19 @@
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- tein -->
 <div class="container py-5">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <h1 class="fw-bold mb-3">
-                Limpeza de Alojamentos Locais
-            </h1>
+            <h1 class="fw-bold mb-3">Limpeza de Alojamentos Locais</h1>
 
             <p class="text-muted mb-4">
                 Uma plataforma simples e eficiente para solicitar,
-                acompanhar e avaliar serviços de limpeza do seu alojamento.
-            </p>
+                acompanhar e avaliar serviços de limpeza do seu alojamento.</p>
 
             <div class="d-flex gap-3">
-                <a href="{{ route('schedulings.create') }}" class="btn btn-primary btn-lg">
-                    Pedir Limpeza
-                </a>
-
-                <a href="{{ route('schedulings.index') }}" class="btn btn-outline-secondary btn-lg">
-                    Consultar Estado
-                </a>
+                <a href="{{ route('schedulings.create') }}" class="btn btn-primary btn-lg">Pedir Limpeza</a>
+                <a href="{{ route('schedulings.index') }}" class="btn btn-outline-secondary btn-lg">Consultar Estado</a>
             </div>
         </div>
 
@@ -51,8 +41,7 @@
                 src="https://cdn-icons-png.flaticon.com/512/4334/4334893.png"
                 alt="Limpeza"
                 class="img-fluid"
-                style="max-height: 320px;"
-            >
+                style="max-height: 320px;">
         </div>
     </div>
 </div>
@@ -63,9 +52,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm p-3">
                 <h5 class="fw-bold">Pedido de Limpeza</h5>
-                <p class="text-muted">
-                    Solicite serviços de limpeza de forma rápida e intuitiva.
-                </p>
+                <p class="text-muted">Solicite serviços de limpeza de forma rápida e intuitiva</p>
                 <small class="text-muted">RF5</small>
             </div>
         </div>
@@ -73,9 +60,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm p-3">
                 <h5 class="fw-bold">Acompanhamento</h5>
-                <p class="text-muted">
-                    Consulte o estado e histórico das suas limpezas.
-                </p>
+                <p class="text-muted">Consulte o estado e histórico das suas limpezas</p>
                 <small class="text-muted">RF9</small>
             </div>
         </div>
@@ -83,9 +68,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm p-3">
                 <h5 class="fw-bold">Avaliação</h5>
-                <p class="text-muted">
-                    Avalie o serviço e acompanhe indicadores simples.
-                </p>
+                <p class="text-muted">Avalie o serviço e acompanhe indicadores simples.</p>
                 <small class="text-muted">RF11</small>
             </div>
         </div>
@@ -98,22 +81,19 @@
 
     <div class="row">
         <div class="col-md-4">
-            <div class="alert alert-primary text-center">
-                Limpezas Agendadas
+            <div class="alert alert-primary text-center">Limpezas Agendadas
                 <div class="fw-bold fs-4">—</div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="alert alert-warning text-center">
-                Em Execução
+            <div class="alert alert-warning text-center">Em Execução
                 <div class="fw-bold fs-4">—</div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="alert alert-success text-center">
-                Concluídas
+            <div class="alert alert-success text-center">Concluídas
                 <div class="fw-bold fs-4">—</div>
             </div>
         </div>
@@ -121,9 +101,6 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="text-center mt-5 py-4 text-muted">
-    © 2025 • Aplicação Web para Gestão de Limpeza de Alojamentos
-</footer>
-
+<footer class="text-center mt-5 py-4 text-muted">© 2025 • Aplicação Web para Gestão de Limpeza de Alojamentos</footer>
 </body>
 </html>
