@@ -12,6 +12,11 @@ class Scheduling extends Model
 
     protected $table = 'schedulings';
 
-
-
+    protected $fillable = [
+        'priority',
+        'start_date',
+        'estimated_days',
+        'state',
+        'notes'
+    ];
 }

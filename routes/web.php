@@ -9,3 +9,5 @@ Route::get('/', function () {
 Route::get('/agendamentos', [SchedulingController::class, 'index'])->name('schedulings.index');
 Route::get('/agendamentos/novo', [SchedulingController::class, 'create'])->name('schedulings.create');
 Route::post('/agendamentos', [SchedulingController::class, 'store'])->name('schedulings.store');
+
+Route::get('/login', function () {return view('schedulings.login');})->name('schedulings.login');

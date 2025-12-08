@@ -9,7 +9,21 @@
 </head>
 <body class="bg-light">
 
-<div class="container T">
+<!-- TOPO COM LOGIN -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <span class="navbar-brand fw-bold">
+            Gestão de Limpeza AL
+        </span>
+
+        <a href="{{ route('schedulings.login') }}" class="btn btn-outline-dark">
+            Login
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="container py-5">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="fw-bold mb-3">
@@ -20,8 +34,11 @@
                 Uma plataforma simples e eficiente para solicitar,
                 acompanhar e avaliar serviços de limpeza do seu alojamento.
             </p>
+
             <div class="d-flex gap-3">
-                <a href="{{ route('schedulings.create') }}" class="btn btn-primary btn-lg">Pedir Limpeza</a>
+                <a href="{{ route('schedulings.create') }}" class="btn btn-primary btn-lg">
+                    Pedir Limpeza
+                </a>
 
                 <a href="{{ route('schedulings.index') }}" class="btn btn-outline-secondary btn-lg">
                     Consultar Estado
@@ -40,16 +57,16 @@
     </div>
 </div>
 
-<!-- extensao -->
+<!-- Requesitos Cliente -->
 <div class="container text-center mt-5">
     <div class="row">
         <div class="col-md-4">
             <div class="card shadow-sm p-3">
-                <h5 class="fw-bold">Pedido Limpeza</h5>
+                <h5 class="fw-bold">Pedido de Limpeza</h5>
                 <p class="text-muted">
-                    Solicite serviços de limpeza de forma rápida
-                    e intuitiva.
+                    Solicite serviços de limpeza de forma rápida e intuitiva.
                 </p>
+                <small class="text-muted">RF5</small>
             </div>
         </div>
 
@@ -57,8 +74,9 @@
             <div class="card shadow-sm p-3">
                 <h5 class="fw-bold">Acompanhamento</h5>
                 <p class="text-muted">
-                    Consulte o estado do serviço em tempo real.
+                    Consulte o estado e histórico das suas limpezas.
                 </p>
+                <small class="text-muted">RF9</small>
             </div>
         </div>
 
@@ -66,8 +84,37 @@
             <div class="card shadow-sm p-3">
                 <h5 class="fw-bold">Avaliação</h5>
                 <p class="text-muted">
-                    Avalie a qualidade do serviço prestado.
+                    Avalie o serviço e acompanhe indicadores simples.
                 </p>
+                <small class="text-muted">RF11</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RESUMO / DASHBOARD SIMPLES -->
+<div class="container mt-5">
+    <h4 class="mb-3">Resumo do Cliente</h4>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="alert alert-primary text-center">
+                Limpezas Agendadas
+                <div class="fw-bold fs-4">—</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-warning text-center">
+                Em Execução
+                <div class="fw-bold fs-4">—</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-success text-center">
+                Concluídas
+                <div class="fw-bold fs-4">—</div>
             </div>
         </div>
     </div>
@@ -80,4 +127,3 @@
 
 </body>
 </html>
-
