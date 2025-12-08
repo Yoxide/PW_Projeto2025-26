@@ -1,14 +1,11 @@
 <?php
 
-use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SchedulingController;
 
-Route::get('/', [EventController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');})->name('home');
 
-Route::get('/contacts',[EventController::class, 'index2']);
-
-Route::get('/products/{id}', function ($id) {
-    return view('products', ['id' => $id]);
-});
-
-Route::get('/events', [EventController::class, 'index3']);
+Route::get('/agendamentos', [SchedulingController::class, 'index'])->name('schedulings.index');
+Route::get('/agendamentos/novo', [SchedulingController::class, 'create'])->name('schedulings.create');
+Route::post('/agendamentos', [SchedulingController::class, 'store'])->name('schedulings.store');
