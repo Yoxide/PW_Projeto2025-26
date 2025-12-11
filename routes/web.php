@@ -2,13 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulingController;
+use App\Http\Controllers\LodgingController;
 
 Route::get('/', function () {
     return view('welcome');})->name('home');
+// Rotas padrao CRUD
+Route::resource('schedulings', SchedulingController::class);
+Route::resource('agendamentos', SchedulingController::class)
+    ->parameters(['agendamentos' => 'scheduling'])
+    ->names('schedulings');
+Route::resource('lodgings', LodgingController::class);
 
-Route::get('/agendamentos', [SchedulingController::class, 'index'])->name('schedulings.index');
-Route::get('/agendamentos/novo', [SchedulingController::class, 'create'])->name('schedulings.create');
-Route::post('/agendamentos', [SchedulingController::class, 'store'])->name('schedulings.store');
 
 Route::get('/login', function () {return view('schedulings.login');})->name('schedulings.login');
 

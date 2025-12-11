@@ -1,37 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
-        <h2>Lista de Agendamentos</h2>
+    <div class="container">
+        <h1>Agendamentos</h1>
+
+        <a class="btn btn-primary mb-3" href="{{ route('schedulings.create') }}">Novo Agendamento</a>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <a href="{{ route('schedulings.create') }}" class="btn btn-success mb-3">Novo Agendamento</a>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Prioridade</th>
-                <th>Data Início</th>
-                <th>Dias Estimados</th>
+                <th>Data início</th>
+                <th>Duração (dias)</th>
                 <th>Estado</th>
                 <th>Notas</th>
+                <th>Ações</th>
             </tr>
             </thead>
+
             <tbody>
             @foreach($schedulings as $s)
                 <tr>
-                    <td>{{ $s->id }}</td>
                     <td>{{ $s->priority }}</td>
                     <td>{{ $s->start_date }}</td>
                     <td>{{ $s->estimated_days }}</td>
                     <td>{{ $s->state }}</td>
                     <td>{{ $s->notes }}</td>
+
+                    <td>
+                        <a href="{{ route('schedulings.edit', $s) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                        <form action="{{ route('schedulings.destroy', $s) }}" method="POST" style="display:inline;">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-danger btn-sm">Apagar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
 @endsection
+
