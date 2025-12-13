@@ -14,9 +14,7 @@
     <div class="container">
         <span class="navbar-brand fw-bold">Gestão de Limpeza Alojamentos</span>
 
-        <a href="{{ route('schedulings.login') }}" class="btn btn-outline-dark">
-            Login
-        </a>
+        <a href="{{ route('login') }}" class="btn btn-outline-dark">Login</a>
     </div>
 </nav>
 
@@ -75,7 +73,7 @@
     </div>
 </div>
 
-<!-- RESUMO / DASHBOARD SIMPLES -->
+<!-- DASHBOARD SIMPLES -->
 <div class="container mt-5">
     <h4 class="mb-3">Resumo do Cliente</h4>
 
