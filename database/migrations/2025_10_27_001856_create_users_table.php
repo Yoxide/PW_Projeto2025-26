@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'coordinator','operational', 'client']);
             $table->enum('state', ['active', 'suspended','inactive']);
             $table->string('phone')->nullable();
-            $table->foreignId("feedback_id")->constrained('feedbacks')->onDelete('cascade');
+            $table->foreignId("feedback_id")->nullable()->constrained('feedbacks')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
