@@ -14,7 +14,7 @@ Route::resource('agendamentos', SchedulingController::class)
 Route::resource('lodgings', LodgingController::class);
 
 
-Route::get('/login', function () {return view('login');})->name('login');
+//Route::get('/login', function () {return view('login');})->name('login');
 
 Route::prefix('admin')->group(function () {
 
