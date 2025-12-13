@@ -16,6 +16,16 @@
 
         <a href="{{ route('login') }}" class="btn btn-outline-dark">Login</a>
     </div>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault(); this.closest('form').submit();">
+            Log Out
+        </a>
+    </form>
+
 </nav>
 
 <!-- tein -->
