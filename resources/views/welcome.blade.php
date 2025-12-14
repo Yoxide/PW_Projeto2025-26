@@ -9,24 +9,39 @@
 </head>
 <body class="bg-light">
 
-<!--  topo -->
+<!-- topo -->
 <nav class="navbar navbar-light bg-light">
-    <div class="container">
-        <span class="navbar-brand fw-bold">Gestão de Limpeza Alojamentos</span>
+    <div class="container d-flex justify-content-between align-items-center">
+        <span class="navbar-brand fw-bold">
+            Gestão de Limpeza Alojamentos
+        </span>
 
-        <a href="{{ route('login') }}" class="btn btn-outline-dark">Login</a>
+        <div class="d-flex gap-2">
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-outline-dark">
+                    Login
+                </a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="btn btn-outline-dark">
+                        Register
+                    </a>
+                @endif
+            @endguest
+
+            @auth
+                <form method="POST" action="{{ route('logout') }}" class="mb-0">
+                    @csrf
+
+                    <button type="submit" class="btn btn-outline-dark">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+        </div>
     </div>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-
-        <a href="{{ route('logout') }}"
-           onclick="event.preventDefault(); this.closest('form').submit();">
-            Log Out
-        </a>
-    </form>
-
 </nav>
+
 
 <!-- tein -->
 <div class="container py-5">
