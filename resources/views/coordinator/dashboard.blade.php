@@ -1,39 +1,68 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Painel do Coordenador
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h1>Dashboard do Coordenador</h1>
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-bg-primary mb-3">
-                <div class="card-body text-center">
-                    <h5>Limpezas Planeadas</h5>
-                    <p class="fs-3">—</p>
+            <div class="row">
+
+                {{-- Agendamentos --}}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Agendamentos</h5>
+                            <p class="card-text text-muted">
+                                Gerir e acompanhar agendamentos de limpeza.
+                            </p>
+
+                            <a href="{{ route('coordinator.agendamentos.blade.php') }}"
+                               class="btn btn-primary">
+                                Ver Agendamentos
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card text-bg-warning mb-3">
-                <div class="card-body text-center">
-                    <h5>Em Progresso</h5>
-                    <p class="fs-3">—</p>
+                {{-- Atribuições --}}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Atribuições</h5>
+                            <p class="card-text text-muted">
+                                Distribuição de tarefas pelas equipas.
+                            </p>
+
+                            <a href="{{ route('coordinator.atribuicoes.blade.php') }}"
+                               class="btn btn-primary">
+                                Gerir Atribuições
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card text-bg-success mb-3">
-                <div class="card-body text-center">
-                    <h5>Concluídas</h5>
-                    <p class="fs-3">—</p>
+                {{-- Checklist --}}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Checklist</h5>
+                            <p class="card-text text-muted">
+                                Verificação do estado das limpezas.
+                            </p>
+
+                            <a href="{{ route('coordinator.checklist') }}"
+                               class="btn btn-primary">
+                                Abrir Checklist
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="alert alert-primary text-center">
-            Limpezas este mês
-            <div class="fs-3 fw-bold">12</div>
-        </div>
 
+            </div>
+
+        </div>
     </div>
-@endsection
+</x-app-layout>
