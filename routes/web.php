@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulingController;
 use App\Http\Controllers\LodgingController;
+use App\Http\Controllers\Admin\UserController;
+
 
 Route::get('/', function () {
     return view('welcome');})->name('home');
@@ -25,17 +27,27 @@ Route::middleware('auth')->get('/dashboard', function () {
 
 //Route::get('/login', function () {return view('login');})->name('login');
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
-    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+Route::prefix('admin')
+    ->middleware(['auth', 'role:admin'])
+    ->group(function () {
 
-    Route::view('/users', 'admin.users-index')->name('admin.users.index');
-    Route::view('/users/create', 'admin.users-create')->name('admin.users.create');
-    Route::view('/users/{id}/edit', 'admin.users-edit')->name('admin.users.edit');
+        Route::view('/dashboard', 'admin.dashboard')
+            ->name('admin.dashboard');
 
-    Route::view('/sections', 'admin.sections')->name('admin.sections.index');
-    Route::view('/teams', 'admin.teams')->name('admin.teams.index');
-});
+        // Users (CRUD + role management)
+        Route::resource('users', UserController::class)
+            ->names('admin.users');
+
+        // Sections
+        Route::view('/sections', 'admin.sections')
+            ->name('admin.sections.index');
+
+        // Teams
+        Route::view('/teams', 'admin.teams')
+            ->name('admin.teams.index');
+    });
+
 
 //coordenador
 Route::middleware(['auth', 'role:coordinator'])->prefix('coordinator')->group(function () {

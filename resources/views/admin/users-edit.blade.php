@@ -1,38 +1,28 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl">Editar Utilizador</h2>
+    </x-slot>
 
-@extends('layouts.app')
+    <form method="POST" action="{{ route('admin.users.update', $user) }}">
+        @csrf
+        @method('PUT')
 
-@section('title', 'Editar Utilizador')
-
-@section('content')
-    <div class="card">
-        <div class="card-header">
-            <h5>Editar Utilizador</h5>
+        <div class="mb-4">
+            <label class="block">Nome</label>
+            <input class="form-input w-full" value="{{ $user->name }}" disabled>
         </div>
 
-        <div class="card-body">
-
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" value="João Silva">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" value="joao@example.com">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Tipo de Utilizador</label>
-                    <select class="form-select">
-                        <option value="admin">Administrador</option>
-                        <option value="user" selected>Utilizador</option>
-                    </select>
-                </div>
-
-                <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancelar</a>
-                <button class="btn btn-warning">Atualizar</button>
-            </form>
+        <div class="mb-4">
+            <label class="block">Role</label>
+            <select name="role" class="form-select w-full">
+                @foreach (['admin','coordinator','operational','client'] as $role)
+                    <option value="{{ $role }}" {{ $user->role === $role ? 'selected' : '' }}>
+                        {{ ucfirst($role) }}
+                    </option>
+                @endforeach
+            </select>
         </div>
-    </div>
-@endsection
+
+        <button class="btn btn-primary">Guardar</button>
+    </form>
+</x-app-layout>
