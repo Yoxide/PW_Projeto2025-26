@@ -5,9 +5,10 @@ use App\Models\Lodging;
 use Illuminate\Http\Request;
 
 class LodgingController extends Controller
-    {public function index()
-    {$lodgings = Lodging::where('lodging_owner_id', auth()->id())->get();
-    return view('lodgings.index', compact('lodgings'));}
+    {public function index() {
+    $lodgings = Lodging::all();
+    return view('lodgings.index', compact('lodgings'));
+}
 
     public function create()
     {return view('lodgings.create');}
