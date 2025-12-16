@@ -86,5 +86,14 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function schedulings()
+    {
+        return $this->belongsToMany(
+            \App\Models\Scheduling::class,
+            'scheduling_user'
+        );
+    }
+
+
 
 }

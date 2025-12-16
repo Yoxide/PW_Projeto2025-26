@@ -1,20 +1,16 @@
+<div class="mb-3">
+    <label class="form-label">Funcionários Operacionais</label>
 
-@extends('layouts.app')
+    <select name="users[]" class="form-select" multiple>
+        @foreach ($operationalUsers as $user)
+            <option value="{{ $user->id }}"
+                @selected($scheduling->users->contains($user->id))>
+                {{ $user->name }} ({{ $user->email }})
+            </option>
+        @endforeach
+    </select>
 
-@section('content')
-    <div class="container">
-        <h1>Editar Agendamento</h1>
-
-        <form method="POST" action="{{ route('schedulings.update', $scheduling) }}">
-            @csrf
-            @method('PUT')
-
-            @include('schedulings.form', [
-                'lodgings' => $lodgings,
-                'scheduling' => $scheduling
-            ])
-
-            <button class="btn btn-primary mt-3">Atualizar</button>
-        </form>
-    </div>
-@endsection
+    <small class="text-muted">
+        Pode selecionar vários funcionários.
+    </small>
+</div>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Scheduling;
 use App\Models\Lodging;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class SchedulingController extends Controller
 {
@@ -39,26 +41,32 @@ class SchedulingController extends Controller
 
     public function edit(Scheduling $scheduling)
     {
-        $lodgings = Lodging::orderBy('name')->get();
-        return view('schedulings.edit', compact('scheduling', 'lodgings'));
+        $operationalUsers = User::where('role', 'operational')->get();
+
+        return view('schedulings.edit', compact('scheduling', 'operationalUsers'));
     }
 
     public function update(Request $request, Scheduling $scheduling)
     {
         $validated = $request->validate([
-            'priority' => 'required|in:low,medium,high',
+            'priority' => 'required',
             'start_date' => 'required|date',
-            'estimated_days' => 'required|integer|min:1',
-            'state' => 'required|in:scheduled,in progress,finished,cancelled',
-            'notes' => 'required|string|max:255',
-            'lodging_id' => 'required|exists:lodgings,id',
+            'estimated_days' => 'required|integer',
+            'state' => 'required',
+            'notes' => 'nullable|string',
+            'users' => 'array',
+            'users.*' => 'exists:users,id',
         ]);
 
         $scheduling->update($validated);
 
-        return redirect()->route('schedulings.index')
-            ->with('success', 'Agendamento atualizado com sucesso');
+        $scheduling->users()->sync($request->users ?? []);
+
+        return redirect()
+            ->route('schedulings.index')
+            ->with('success', 'Agendamento atualizado com sucesso.');
     }
+
 
     public function destroy(Scheduling $scheduling)
     {

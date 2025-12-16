@@ -47,4 +47,13 @@ class Scheduling extends Model
     {
         return $this->hasMany(Notification::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            \App\Models\User::class,
+            'scheduling_user'
+        );
+    }
+
 }
