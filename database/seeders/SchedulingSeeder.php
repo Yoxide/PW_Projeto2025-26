@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lodging;
+use App\Models\Scheduling;
 use Illuminate\Database\Seeder;
 
-class LodgingSeeder extends Seeder
+class SchedulingSeeder extends Seeder
 {
     public function run(): void
     {
-        Lodging::factory()->count(10)->create();
+        Scheduling::factory()->count(15)->create();
     }
 }

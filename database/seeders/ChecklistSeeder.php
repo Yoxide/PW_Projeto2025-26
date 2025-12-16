@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lodging;
+use App\Models\Checklist;
 use Illuminate\Database\Seeder;
 
-class LodgingSeeder extends Seeder
+class ChecklistSeeder extends Seeder
 {
     public function run(): void
     {
-        Lodging::factory()->count(10)->create();
+        Checklist::factory()->count(20)->create();
     }
 }

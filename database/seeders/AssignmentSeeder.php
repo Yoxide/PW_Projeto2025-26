@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lodging;
+use App\Models\Assignment;
 use Illuminate\Database\Seeder;
 
-class LodgingSeeder extends Seeder
+class AssignmentSeeder extends Seeder
 {
     public function run(): void
     {
-        Lodging::factory()->count(10)->create();
+        Assignment::factory()->count(20)->create();
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lodging;
+use App\Models\Upload;
 use Illuminate\Database\Seeder;
 
-class LodgingSeeder extends Seeder
+class UploadSeeder extends Seeder
 {
     public function run(): void
     {
-        Lodging::factory()->count(10)->create();
+        Upload::factory()->count(15)->create();
     }
 }

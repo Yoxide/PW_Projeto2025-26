@@ -1,14 +1,13 @@
 <?php
-
 namespace Database\Seeders;
 
-use App\Models\Lodging;
+use App\Models\Material;
 use Illuminate\Database\Seeder;
 
-class LodgingSeeder extends Seeder
+class MaterialSeeder extends Seeder
 {
     public function run(): void
     {
-        Lodging::factory()->count(10)->create();
+        Material::factory()->count(10)->create();
     }
 }

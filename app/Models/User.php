@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -29,7 +28,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
     ];
 
     /**
@@ -65,4 +63,27 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'user_has_team')
+            ->withPivot('feedback_id')
+            ->withTimestamps();
+    }
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'user_has_sections')
+            ->withTimestamps();
+    }
+    public function lodgings()
+    {
+        return $this->belongsToMany(Lodging::class, 'user_has_lodgings')
+            ->withPivot('lodging_owner_id')
+            ->withTimestamps();
+    }
+
+
 }
