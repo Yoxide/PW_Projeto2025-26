@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::orderBy('name')->get();
+        return view('admin.users-index', compact('users'));
+    }
+
     public function edit(User $user)
     {
         return view('admin.users-edit', compact('user'));
@@ -21,7 +27,7 @@ class UserController extends Controller
 
         // Optional safety: prevent self-demotion
         if ($user->id === auth()->id()) {
-            return back()->withErrors('Não pode alterar o seu próprio role.');
+            return back()->withErrors('Não pode alterar o seu próprio role  .');
         }
 
         $user->update([

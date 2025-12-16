@@ -19,7 +19,7 @@
                                 Lista de tarefas atribuídas.
                             </p>
 
-                            <a href="{{ route('operational.tarefas.blade.php') }}"
+                            <a href="{{ route('operational.tarefas') }}"
                                class="btn btn-primary">
                                 Ver Tarefas
                             </a>
@@ -66,5 +66,6 @@
         </div>
     </div>
 </x-app-layout>
+
 
 

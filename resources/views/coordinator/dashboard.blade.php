@@ -19,7 +19,7 @@
                                 Gerir e acompanhar agendamentos de limpeza.
                             </p>
 
-                            <a href="{{ route('coordinator.agendamentos.blade.php') }}"
+                            <a href="{{ route('coordinator.agendamentos') }}"
                                class="btn btn-primary">
                                 Ver Agendamentos
                             </a>
@@ -36,7 +36,7 @@
                                 Distribuição de tarefas pelas equipas.
                             </p>
 
-                            <a href="{{ route('coordinator.atribuicoes.blade.php') }}"
+                            <a href="{{ route('coordinator.atribuicoes') }}"
                                class="btn btn-primary">
                                 Gerir Atribuições
                             </a>
@@ -66,3 +66,4 @@
         </div>
     </div>
 </x-app-layout>
+
