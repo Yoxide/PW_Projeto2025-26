@@ -18,9 +18,15 @@ class SchedulingController extends Controller
 
     public function create()
     {
-        $lodgings = Lodging::where('lodging_owner_id', auth()->id())->get();
+        $owner = auth()->user()->lodgingOwners()->first();
+
+        $lodgings = $owner
+            ? $owner->lodgings
+            : collect();
+
         return view('schedulings.create', compact('lodgings'));
     }
+
 
     public function store(Request $request)
     {
@@ -33,7 +39,12 @@ class SchedulingController extends Controller
             'lodging_id' => 'required|exists:lodgings,id', //  associa a um lodging
         ]);
 
-        Scheduling::create($validated);
+        $scheduling = Scheduling::create($validated);
+
+        if ($request->has('users')) {
+            $scheduling->users()->sync($request->users);
+        }
+
 
         return redirect()->route('schedulings.index')
             ->with('success', 'Agendamento criado com sucesso!');
