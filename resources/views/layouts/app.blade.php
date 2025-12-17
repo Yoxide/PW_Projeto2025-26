@@ -17,6 +17,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <body class="font-sans antialiased">
         <x-banner />
 

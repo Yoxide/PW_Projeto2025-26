@@ -67,3 +67,41 @@
     </div>
 </x-app-layout>
 
+<hr class="my-4">
+
+<div class="row">
+    <div class="col-md-6">
+        <h5>Agendamentos por Estado</h5>
+        <canvas id="schedulingsStateChart"></canvas>
+    </div>
+
+    <div class="col-md-6">
+        <h5>Carga de Trabalho (Operacionais)</h5>
+        <canvas id="workloadChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    new Chart(document.getElementById('schedulingsStateChart'), {
+        type: 'pie',
+        data: {
+            labels: {!! json_encode($schedulingsByState->keys()) !!},
+            datasets: [{
+                data: {!! json_encode($schedulingsByState->values()) !!}
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('workloadChart'), {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($workloadByUser->keys()) !!},
+            datasets: [{
+                data: {!! json_encode($workloadByUser->values()) !!}
+            }]
+        }
+    });
+</script>
+

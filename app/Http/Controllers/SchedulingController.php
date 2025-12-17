@@ -12,8 +12,17 @@ class SchedulingController extends Controller
 {
     public function index()
     {
-        $schedulings = Scheduling::orderBy('start_date')->get();
-        return view('schedulings.index', compact('schedulings'));
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            $schedulings = Scheduling::all();
+        } elseif ($user->role === 'coordinator') {
+            $schedulings = Scheduling::all(); // later restrict by section
+        } else {
+            // operational
+            $schedulings = $user->schedulings;
+        }
+
     }
 
     public function create()

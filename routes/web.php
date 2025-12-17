@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulingController;
 use App\Http\Controllers\LodgingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DashboardController;
+#use App\Http\Controllers\Coordinator\DashboardController;
 
 
 Route::get('/', function () {
@@ -32,8 +34,8 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:admin'])
     ->group(function () {
 
-        Route::view('/dashboard', 'admin.dashboard')
-            ->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('admin.dashboard');;
 
         // Users (CRUD + role management)
         Route::resource('users', UserController::class)
@@ -51,7 +53,8 @@ Route::prefix('admin')
 
 //coordenador
 Route::middleware(['auth', 'role:coordinator'])->prefix('coordinator')->group(function () {
-    Route::view('/dashboard', 'coordinator.dashboard')->name('coordinator.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('coordinator.dashboard');
     Route::view('/agendamentos', 'coordinator.agendamentos')->name('coordinator.agendamentos');
     Route::view('/atribuicoes', 'coordinator.atribuicoes')->name('coordinator.atribuicoes');
     Route::view('/checklist', 'coordinator.checklist')->name('coordinator.checklist');
