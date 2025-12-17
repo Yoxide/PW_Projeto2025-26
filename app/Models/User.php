@@ -94,6 +94,12 @@ class User extends Authenticatable
         );
     }
 
+    public function lodgingOwners()
+    {
+        return $this->hasMany(LodgingOwner::class);
+    }
+
+
 
 
 }

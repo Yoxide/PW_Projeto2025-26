@@ -15,7 +15,8 @@ class LodgingOwner extends Model
     protected $fillable = [
         'lodging_owner_name',
         'contact',
-        'address'
+        'address',
+        'user_id'
     ];
 
     /*Relationships*/
@@ -26,6 +27,11 @@ class LodgingOwner extends Model
     public function userLodgings(): HasMany
     {
         return $this->hasMany(UserHasLodging::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

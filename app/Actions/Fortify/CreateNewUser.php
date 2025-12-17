@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\LodgingOwner;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,11 +27,23 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'role' => 'client',
-            ]);
+        ]);
+
+        LodgingOwner::create([
+            'lodging_owner_name' => $user->name,
+            'contact' => $user->email,
+            'address' => 'Por definir',
+            'user_id' => $user->id,
+        ]);
+
+        return $user;
+
+
+
     }
 }
