@@ -28,22 +28,35 @@
                         <th>Duração</th>
                         <th>Estado</th>
                         <th>Alojamento</th>
-                        <th>Ações</th>
+                        <th style="width: 160px;">Ações</th>
                     </tr>
                     </thead>
+
                     <tbody>
                     @forelse($schedulings as $s)
                         <tr>
-                            <td>{{ $s->priority }}</td>
-                            <td>{{ $s->start_date }}</td>
+                            <td>{{ ucfirst($s->priority) }}</td>
+                            <td>{{ \Carbon\Carbon::parse($s->start_date)->format('d/m/Y') }}</td>
                             <td>{{ $s->estimated_days }}</td>
-                            <td>{{ $s->state }}</td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $s->state)) }}</td>
                             <td>{{ $s->lodging->name ?? '—' }}</td>
-                            <td>
+                            <td class="d-flex gap-1">
                                 <a href="{{ route('schedulings.edit', $s) }}"
                                    class="btn btn-sm btn-warning">
                                     Editar
                                 </a>
+
+                                @if(auth()->check() && auth()->user()->role === 'admin')
+                                    <form action="{{ route('schedulings.destroy', $s) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Tem a certeza que deseja eliminar este agendamento?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            Apagar
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @empty
@@ -60,3 +73,4 @@
         </div>
     </div>
 </x-app-layout>
+
