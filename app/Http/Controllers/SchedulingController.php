@@ -20,8 +20,11 @@ class SchedulingController extends Controller
     public function create()
     {
         $lodgings = Lodging::orderBy('name')->get();
-        return view('schedulings.create', compact('lodgings'));
+        $operationalUsers = User::where('role', 'operational')->get();
+
+        return view('schedulings.create', compact('lodgings', 'operationalUsers'));
     }
+
 
 
 
@@ -31,21 +34,24 @@ class SchedulingController extends Controller
             'priority' => 'required|in:low,medium,high',
             'start_date' => 'required|date',
             'estimated_days' => 'required|integer|min:1',
-            'state' => 'required|in:scheduled,in progress,finished,cancelled',
-            'notes' => 'required|string|max:255',
-            'lodging_id' => 'required|exists:lodgings,id', //  associa a um lodging
+            'state' => 'required|in:scheduled,in_progress,finished,cancelled',
+            'notes' => 'nullable|string|max:255',
+            'lodging_id' => 'required|exists:lodgings,id',
+            'users' => 'nullable|array',
+            'users.*' => 'exists:users,id',
         ]);
 
         $scheduling = Scheduling::create($validated);
 
-        if ($request->has('users')) {
-            $scheduling->users()->sync($request->users);
+        if ($request->filled('users')) {
+            $scheduling->users()->attach($request->users);
         }
 
-
-        return redirect()->route('schedulings.index')
+        return redirect()
+            ->route('schedulings.index')
             ->with('success', 'Agendamento criado com sucesso!');
     }
+
 
     public function edit(Scheduling $scheduling)
     {

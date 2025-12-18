@@ -22,6 +22,20 @@
 
                 @include('schedulings.form', ['lodgings' => $lodgings])
 
+                <div class="mb-3">
+                    <label class="form-label">Funcionários Operacionais</label>
+                    <select name="users[]" class="form-control" multiple>
+                        @foreach($operationalUsers as $user)
+                            <option value="{{ $user->id }}">
+                                {{ $user->name }} ({{ $user->email }})
+                            </option>
+                        @endforeach
+                    </select>
+                    <small class="text-muted">
+                        Pode selecionar vários funcionários.
+                    </small>
+                </div>
+
                 <button class="btn btn-success mt-3">
                     Criar
                 </button>
