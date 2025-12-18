@@ -16,7 +16,9 @@ Route::resource('schedulings', SchedulingController::class);
 Route::resource('agendamentos', SchedulingController::class)
     ->parameters(['agendamentos' => 'scheduling'])
     ->names('schedulings');
-Route::resource('lodgings', LodgingController::class);
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('lodgings', LodgingController::class);
+});
 
 Route::middleware('auth')->get('/dashboard', function () {
     return match (auth()->user()->role) {

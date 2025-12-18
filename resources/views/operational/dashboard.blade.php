@@ -21,7 +21,9 @@
             {{-- Chart --}}
             <div class="card">
                 <div class="card-body">
-                    <canvas id="tasksChart" height="150"></canvas>
+                    <div style="max-width: 300px; margin: 0 auto;">
+                    <canvas id="tasksChart"></canvas>
+                    </div>
                 </div>
             </div>
 
