@@ -40,6 +40,19 @@
                     <textarea name="description" class="form-control"></textarea>
                 </div>
 
+                <div class="mb-3">
+                    <label class="form-label">Proprietário</label>
+                    <select name="lodging_owner_id" class="form-control" required>
+                        <option value="">-- Selecionar proprietário --</option>
+
+                        @foreach($owners as $owner)
+                            <option value="{{ $owner->id }}">
+                                {{ $owner->lodging_owner_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <button class="btn btn-success">
                     Criar
                 </button>

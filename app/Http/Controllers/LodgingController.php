@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lodging;
+use App\Models\LodgingOwner;
 use Illuminate\Http\Request;
 
 class LodgingController extends Controller
@@ -11,32 +12,28 @@ class LodgingController extends Controller
 }
 
     public function create()
-    {return view('lodgings.create');}
+    {
+        $owners = LodgingOwner::orderBy('lodging_owner_name')->get();
+        return view('lodgings.create', compact('owners'));
+    }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'capacity' => 'required|integer',
-            'type' => 'required',
-            'description' => 'nullable',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
+            'type' => 'required|string',
+            'description' => 'nullable|string',
+            'lodging_owner_id' => 'required|exists:lodging_owners,id',
         ]);
 
-        $owner = auth()->user()->lodgingOwners()->first();
+        Lodging::create($validated);
 
-        Lodging::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'capacity' => $request->capacity,
-            'type' => $request->type,
-            'description' => $request->description,
-            'lodging_owner_id' => $owner->id,
-            'state' => 'active',
-        ]);
-
-        return redirect()->route('lodgings.index')
+        return redirect()
+            ->route('lodgings.index')
             ->with('success', 'Alojamento criado com sucesso!');
     }
+
 
 }

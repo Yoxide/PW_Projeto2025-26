@@ -8,64 +8,40 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <div class="row">
-
-                {{-- Tarefas --}}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Tarefas</h5>
-                            <p class="card-text text-muted">
-                                Lista de tarefas atribuídas.
-                            </p>
-
-                            <a href="{{ route('operational.tarefas') }}"
-                               class="btn btn-primary">
-                                Ver Tarefas
-                            </a>
-                        </div>
+            {{-- Stat card --}}
+            <div class="mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Total de tarefas atribuídas</h5>
+                        <h2>{{ $total }}</h2>
                     </div>
                 </div>
+            </div>
 
-                {{-- Checklist --}}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Checklist</h5>
-                            <p class="card-text text-muted">
-                                Registo e confirmação de tarefas concluídas.
-                            </p>
-
-                            <a href="{{ route('operational.checklist') }}"
-                               class="btn btn-primary">
-                                Abrir Checklist
-                            </a>
-                        </div>
-                    </div>
+            {{-- Chart --}}
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="tasksChart" height="150"></canvas>
                 </div>
-
-                {{-- Uploads --}}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Uploads</h5>
-                            <p class="card-text text-muted">
-                                Envio de comprovativos e imagens.
-                            </p>
-
-                            <a href="{{ route('operational.uploads') }}"
-                               class="btn btn-primary">
-                                Gerir Uploads
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        new Chart(document.getElementById('tasksChart'), {
+            type: 'pie',
+            data: {
+                labels: {!! json_encode($byState->keys()) !!},
+                datasets: [{
+                    data: {!! json_encode($byState->values()) !!}
+                }]
+            }
+        });
+    </script>
 </x-app-layout>
+
 
 
 

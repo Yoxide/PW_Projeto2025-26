@@ -6,6 +6,7 @@ use App\Http\Controllers\LodgingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController as  AdminDashboardController;
 use App\Http\Controllers\Coordinator\DashboardController as  CoordinatorDashboardController;
+use App\Http\Controllers\Operational\DashboardController as OperationalDashboardController;
 
 
 Route::get('/', function () {
@@ -62,8 +63,11 @@ Route::middleware(['auth', 'role:coordinator'])->prefix('coordinator')->group(fu
 });
 
 /* operacional */
-Route::middleware(['auth', 'role:operational'])->prefix('operational')->group(function () {
-    Route::view('/dashboard', 'operational.dashboard')->name('operational.dashboard');
+Route::middleware(['auth', 'role:operational'])
+    ->prefix('operational')
+    ->group(function () {
+        Route::get('/dashboard', [OperationalDashboardController::class, 'index'])
+            ->name('operational.dashboard');
     Route::view('/tarefas', 'operational.tarefas')->name('operational.tarefas');
     Route::view('/checklist', 'operational.checklist')->name('operational.checklist');
     Route::view('/uploads', 'operational.uploads')->name('operational.uploads');

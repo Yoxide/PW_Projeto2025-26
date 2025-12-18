@@ -27,14 +27,10 @@ class SchedulingController extends Controller
 
     public function create()
     {
-        $owner = auth()->user()->lodgingOwners()->first();
-
-        $lodgings = $owner
-            ? $owner->lodgings
-            : collect();
-
+        $lodgings = Lodging::orderBy('name')->get();
         return view('schedulings.create', compact('lodgings'));
     }
+
 
 
     public function store(Request $request)
