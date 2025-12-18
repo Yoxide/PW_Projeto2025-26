@@ -72,12 +72,16 @@
 <div class="row">
     <div class="col-md-6">
         <h5>Agendamentos por Estado</h5>
+        <div style="max-width: 300px; margin: 0 auto;">
         <canvas id="schedulingsStateChart"></canvas>
+        </div>
     </div>
 
     <div class="col-md-6">
         <h5>Carga de Trabalho (Operacionais)</h5>
+        <div style="max-width: 600px; margin: 0 auto;">
         <canvas id="workloadChart"></canvas>
+    </div>
     </div>
 </div>
 
